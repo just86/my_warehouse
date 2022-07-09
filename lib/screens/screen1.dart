@@ -8,23 +8,43 @@ class Settings extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Text('Підключення до облікової системи', style: TextStyle(fontSize: 18), softWrap: true,),
+          title: const Text(
+            'Підключення до облікової системи',
+            style: TextStyle(fontSize: 18),
+            softWrap: true,
+          ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Column(
-            // crossAxisAlignment: CrossAxisAlignment.start,
+        body: ListView(
+          children: [
+            Row(
               children: [
-                Row(
-                  children: [
-                    Text('Адреса сервера:'),
-                    TextFormField(decoration: const InputDecoration(hintText: 'Адреса публікації'))
-                  ],
-                ),
-                // Text('Адреса сервера:'),
-                // TextField(decoration: const InputDecoration(hintText: 'Адреса публікації'),)
-              ]
-          )
+                Text('Адреса сервера:'),
+                SizedBox(width: 15),
+                Expanded(
+                    child: TextFormField(
+                        decoration: const InputDecoration(
+                            hintText: 'Адреса публікації'))),
+              ],
+            ),
+            Row(children: [
+              Text('Логін:'),
+              SizedBox(width: 15),
+              Expanded(
+                  child: TextFormField(
+                      decoration: const InputDecoration(
+                          hintText: 'Логін з облік. системи'))),
+            ]),
+            Row(
+              children: [
+                Text('Пароль:'),
+                SizedBox(width: 15),
+                Expanded(
+                    child: TextFormField(
+                        decoration: const InputDecoration(
+                            hintText: 'Пароль з облік. системи')))
+              ],
+            ),
+          ],
         ));
   }
 }
