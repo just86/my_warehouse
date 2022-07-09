@@ -11,7 +11,6 @@ class Settings extends StatelessWidget {
           title: const Text(
             'Підключення до облікової системи',
             style: TextStyle(fontSize: 18),
-            softWrap: true,
           ),
         ),
         body: ListView(
@@ -28,7 +27,7 @@ class Settings extends StatelessWidget {
             ),
             Row(children: [
               Text('Логін:'),
-              SizedBox(width: 15),
+              SizedBox(width: 85),
               Expanded(
                   child: TextFormField(
                       decoration: const InputDecoration(
@@ -37,13 +36,14 @@ class Settings extends StatelessWidget {
             Row(
               children: [
                 Text('Пароль:'),
-                SizedBox(width: 15),
+                SizedBox(width: 71),
                 Expanded(
                     child: TextFormField(
                         decoration: const InputDecoration(
                             hintText: 'Пароль з облік. системи')))
               ],
             ),
+            ElevatedButton(onPressed: (){}, child: Text('Зберегти', textAlign: TextAlign.center,))
           ],
         ));
   }

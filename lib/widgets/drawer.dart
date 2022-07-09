@@ -28,7 +28,7 @@ class MainDrawer extends StatelessWidget {
           ElevatedButton(
               child: const Text("Нормативно-довідкова інформація", style: TextStyle(fontSize: 20), textAlign: TextAlign.center),
               onPressed: () {
-                Navigator.pushNamed(context, 'settings');
+                Navigator.pushNamed(context, 'catalogs');
               }),
           // Column(
           //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
