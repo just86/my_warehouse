@@ -11,7 +11,7 @@ class Catalogs extends StatelessWidget {
       ),
       body: ListView(children: [
         SizedBox(height: 5,),
-        ElevatedButton(onPressed: (){}, child: Text('Клієнти')),
+        ElevatedButton(onPressed: (){}, child: Text('Клієнти'), ),
         ElevatedButton(onPressed: (){}, child: Text('Склади')),
         ElevatedButton(onPressed: (){}, child: Text('Товари')),
       ],),

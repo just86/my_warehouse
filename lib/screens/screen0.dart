@@ -14,7 +14,7 @@ class MainScreen extends StatelessWidget {
         routes: {
           '/': (context) => const Screen0(),
           'settings': (context) => const Settings(),
-          'catalogs' : (context) => const Catalogs(),
+          'catalogs': (context) => const Catalogs(),
         });
   }
 }
@@ -30,7 +30,17 @@ class Screen0 extends StatelessWidget {
         title: const Text('Склад компанії'),
       ),
       body: Container(
-
+        child: ListView(children: [
+          SizedBox(
+            height: 5,
+          ),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text('Створити продаж'),
+          ),
+          ElevatedButton(onPressed: () {}, child: Text('Прийняти товар на склад')),
+          ElevatedButton(onPressed: () {}, child: Text('Інвентаризація товарів')),
+        ]),
       ),
       drawer: const MainDrawer(),
     );
