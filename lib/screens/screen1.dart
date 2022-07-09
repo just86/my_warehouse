@@ -6,17 +6,26 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text('Підключення до облікової системи', style: TextStyle(fontSize: 18), softWrap: true,),
         ),
-        body: Container(
-            child: Row(
-              children: const [
-                Text('Адреса сервера'),
-                TextField(decoration: InputDecoration(hintText: 'Адреса публікації облікової системи'), ),
-              ],
-            )));
+        body: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Column(
+            // crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text('Адреса сервера:'),
+                    TextFormField(decoration: const InputDecoration(hintText: 'Адреса публікації'))
+                  ],
+                ),
+                // Text('Адреса сервера:'),
+                // TextField(decoration: const InputDecoration(hintText: 'Адреса публікації'),)
+              ]
+          )
+        ));
   }
 }
-
+//
