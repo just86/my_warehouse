@@ -24,25 +24,48 @@ class Screen0 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> entries = <String>['Створити продаж', 'Прийняти товар на склад', 'Інвентаризація товарів'];
+    final List<int> colorCodes = <int>[100, 100, 100];
+
     return Scaffold(
-      backgroundColor: Colors.cyanAccent,
       appBar: AppBar(
         title: const Text('Склад компанії'),
       ),
-      body: ListView(children: [
-        SizedBox(
-          height: 5,
-        ),
-        SizedBox(
-          width: 10,
-          child: ElevatedButton(
-            onPressed: () {},
-            child: Text('Створити продаж'),
-          ),
-        ),
-        ElevatedButton(onPressed: () {}, child: Text('Прийняти товар на склад'),),
-        ElevatedButton(onPressed: () {}, child: Text('Інвентаризація товарів')),
-      ]),
+      body:
+      // ListView(children: [
+      //   const SizedBox(
+      //     height: 5,
+      //   ),
+      //
+      //   Container(
+      //     color: Colors.amber[600],
+      //     width: 1,
+      //     child: ElevatedButton(
+      //       onPressed: () {},
+      //       child: const Text('Створити продаж'),
+      //     ),
+      //   ),
+      //   ElevatedButton(
+      //     onPressed: () {},
+      //     child: const Text('Прийняти товар на склад'),
+      //   ),
+      //   ElevatedButton(onPressed: () {}, child: Text('Інвентаризація товарів')),
+      // ]),
+
+
+
+    ListView.separated(
+        padding: const EdgeInsets.all(8),
+        itemCount: entries.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            height: 40,
+            color: Colors.amber[colorCodes[index]],
+            child: Center(child: Text(entries[index], style: TextStyle(fontSize: 15),)),
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) => const Divider(),
+      ),
       drawer: const MainDrawer(),
     );
   }
