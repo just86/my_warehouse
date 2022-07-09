@@ -43,6 +43,7 @@ class Settings extends StatelessWidget {
                             hintText: 'Пароль з облік. системи')))
               ],
             ),
+            ElevatedButton(onPressed: (){}, child: Text('Перевірити зв''язок', textAlign: TextAlign.center,)),
             ElevatedButton(onPressed: (){}, child: Text('Зберегти', textAlign: TextAlign.center,))
           ],
         ));

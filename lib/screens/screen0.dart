@@ -29,19 +29,20 @@ class Screen0 extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Склад компанії'),
       ),
-      body: Container(
-        child: ListView(children: [
-          SizedBox(
-            height: 5,
-          ),
-          ElevatedButton(
+      body: ListView(children: [
+        SizedBox(
+          height: 5,
+        ),
+        SizedBox(
+          width: 10,
+          child: ElevatedButton(
             onPressed: () {},
             child: Text('Створити продаж'),
           ),
-          ElevatedButton(onPressed: () {}, child: Text('Прийняти товар на склад')),
-          ElevatedButton(onPressed: () {}, child: Text('Інвентаризація товарів')),
-        ]),
-      ),
+        ),
+        ElevatedButton(onPressed: () {}, child: Text('Прийняти товар на склад'),),
+        ElevatedButton(onPressed: () {}, child: Text('Інвентаризація товарів')),
+      ]),
       drawer: const MainDrawer(),
     );
   }
