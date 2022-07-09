@@ -8,13 +8,15 @@ class Settings extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.blueAccent,
         appBar: AppBar(
-          title: const Text('Налаштування підключення до облікової системи'),
+          title: const Text('Підключення до облікової системи', style: TextStyle(fontSize: 18), softWrap: true,),
         ),
         body: Container(
-            child: Center(
-                child: const Text(
-          'Колись тут будуть налаштування додатка',
-          style: TextStyle(fontSize: 24),
-        ))));
+            child: Row(
+              children: const [
+                Text('Адреса сервера'),
+                TextField(decoration: InputDecoration(hintText: 'Адреса публікації облікової системи'), ),
+              ],
+            )));
   }
 }
+
