@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_warehouse/screens/screen1.dart';
+//import 'package:my_warehouse/screens/screen1.dart';
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class MainDrawer extends StatelessWidget {
           ElevatedButton(
               child: const Text("Нормативно-довідкова інформація", style: TextStyle(fontSize: 20), textAlign: TextAlign.center),
               onPressed: () {
-                Navigator.pushNamed(context, 'settings');
+                Navigator.pushNamed(context, 'catalogs');
               }),
           // Column(
           //   mainAxisAlignment: MainAxisAlignment.spaceBetween,

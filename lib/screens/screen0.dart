@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_warehouse/screens/screen2.dart';
 import 'package:my_warehouse/widgets/drawer.dart';
 import 'package:my_warehouse/screens/screen1.dart';
 
@@ -13,6 +14,7 @@ class MainScreen extends StatelessWidget {
         routes: {
           '/': (context) => const Screen0(),
           'settings': (context) => const Settings(),
+          'catalogs' : (context) => const Catalogs(),
         });
   }
 }
