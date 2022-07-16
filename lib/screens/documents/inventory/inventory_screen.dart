@@ -10,6 +10,11 @@ class ListofInventories extends StatefulWidget {
 class _ListofInventoriesState extends State<ListofInventories> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return SafeArea(child: Scaffold(
+      appBar: AppBar(
+        title: const Text('Документи інвентаризації'),
+      ),
+
+    ));
   }
 }
