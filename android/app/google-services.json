@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "22508645985",
+    "project_id": "damwarehouse-69609",
+    "storage_bucket": "damwarehouse-69609.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22508645985:android:ab4f6b2a3623db307d0420",
+        "android_client_info": {
+          "package_name": "com.dam.my_warehouse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22508645985-6q0rqaads4tve7f5ams6qh36mkr3ba56.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6wQ8hkGBFtL-4FG7G0Etal0lXuCvZ774"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22508645985-6q0rqaads4tve7f5ams6qh36mkr3ba56.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
