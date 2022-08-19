@@ -52,48 +52,48 @@ class _ListOfWarehousesState extends State<ListOfWarehouses> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Список складів'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            TextField(
-              onChanged: (value) => _runFilter(value),
-              decoration: InputDecoration(labelText: 'Пошук', suffixIcon: Icon(Icons.search)),
-            ),
-            SizedBox(height: 20,),
-            Expanded(child: _foundUsers.isNotEmpty
-              ? ListView.builder(
-                itemCount: _foundUsers.length,
-                itemBuilder: (context, index) => Card(
-                  key: ValueKey(_foundUsers[index]['id']),
-                  color: Colors.amberAccent,
-                  elevation: 4,
-                  margin: EdgeInsets.symmetric(vertical: 10),
-                  child: ListTile(
-                    leading: Text(
-                      _foundUsers[index]['id'].toString(),
-                        style: const TextStyle(fontSize: 24)
-                    ),
-                    title: Text(_foundUsers[index]['name']),
-                    subtitle: Text(
-                      '${_foundUsers[index]['age'].toString()} years old')
-                    ),
-                  ),
-
-
-            )
-            : const Text('Нічого не знайдено', style: TextStyle(fontSize: 24),)
-            )
-          ],
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Список складів'),
         ),
-      )
-    );
+        body: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              TextField(
+                onChanged: (value) => _runFilter(value),
+                decoration: InputDecoration(labelText: 'Пошук', suffixIcon: Icon(Icons.search)),
+              ),
+              SizedBox(height: 20,),
+              Expanded(child: _foundUsers.isNotEmpty
+                ? ListView.builder(
+                  itemCount: _foundUsers.length,
+                  itemBuilder: (context, index) => Card(
+                    key: ValueKey(_foundUsers[index]['id']),
+                    color: Colors.amberAccent,
+                    elevation: 4,
+                    margin: EdgeInsets.symmetric(vertical: 10),
+                    child: ListTile(
+                      leading: Text(
+                        _foundUsers[index]['id'].toString(),
+                          style: const TextStyle(fontSize: 24)
+                      ),
+                      title: Text(_foundUsers[index]['name']),
+                      subtitle: Text(
+                        '${_foundUsers[index]['age'].toString()} years old')
+                      ),
+                    ),
+
+
+              )
+              : const Text('Нічого не знайдено', style: TextStyle(fontSize: 24),)
+              )
+            ],
+          ),
+        )
+      );
   }
 }

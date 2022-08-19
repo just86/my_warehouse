@@ -14,16 +14,27 @@ class Catalogs extends StatelessWidget {
           SizedBox(
             height: 5,
           ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text('Клієнти'),
-          ),
-          ElevatedButton(
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, 'list_of_warehouses');
+                Navigator.pushNamed(context, 'list_of_clients');
               },
-              child: Text('Склади')),
-          ElevatedButton(onPressed: () {}, child: Text('Товари')),
+              child: Text('Клієнти'),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, 'list_of_warehouses');
+                },
+                child: Text('Склади')),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+            child: ElevatedButton(onPressed: () {}, child: Text('Товари')),
+          ),
         ],
       ),
     );

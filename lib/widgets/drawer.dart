@@ -18,18 +18,21 @@ class MainDrawer extends StatelessWidget {
           ),*/
 
           Padding(
-            padding: const EdgeInsets.only(top: 20.0),
+            padding: const EdgeInsets.all(10),
             child: ElevatedButton(
                 child: const Text("Налаштування підключення", style: TextStyle(fontSize: 20), textAlign: TextAlign.center),
                 onPressed: () {
                   Navigator.pushNamed(context, 'settings');
                 }),
           ),
-          ElevatedButton(
-              child: const Text("Нормативно-довідкова інформація", style: TextStyle(fontSize: 20), textAlign: TextAlign.center),
-              onPressed: () {
-                Navigator.pushNamed(context, 'catalogs');
-              }),
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+            child: ElevatedButton(
+                child: const Text("Нормативно-довідкова інформація", style: TextStyle(fontSize: 20), textAlign: TextAlign.center),
+                onPressed: () {
+                  Navigator.pushNamed(context, 'catalogs');
+                }),
+          ),
           // Column(
           //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
           //   children: [
