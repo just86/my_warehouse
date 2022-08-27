@@ -1,13 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-
-void initFirebase() async{
-
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-}
-
+import 'package:my_warehouse/widgets/db/sql_helper.dart';
 
 
 class ListofInventories extends StatefulWidget {
@@ -18,31 +10,165 @@ class ListofInventories extends StatefulWidget {
 }
 
 class _ListofInventoriesState extends State<ListofInventories> {
+  List<Map<String, dynamic>> _journals = [];
+  bool _isLoading = true;
+
+  // This function is used to fetch all data from the database
+  void _refreshJournals() async {
+    final data = await SQLHelper.getItemsInventory();
+    setState(() {
+      _journals = data;
+      _isLoading = false;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _refreshJournals(); // Loading the diary when the app starts
+  }
+
+  final TextEditingController _titleController = TextEditingController();
+  // final TextEditingController _descriptionController = TextEditingController();
+
+  // This function will be triggered when the floating button is pressed
+  // It will also be triggered when you want to update an item
+  void _showForm(int? id) async {
+    if (id != null) {
+      // id == null -> create new item
+      // id != null -> update an existing item
+      final existingJournal =
+      _journals.firstWhere((element) => element['id'] == id);
+      _titleController.text = existingJournal['title'];
+      // _descriptionController.text = existingJournal['description'];
+    }
+
+    showModalBottomSheet(
+        context: context,
+        elevation: 5,
+        isScrollControlled: true,
+        builder: (_) =>
+            Container(
+              padding: EdgeInsets.only(
+                top: 15,
+                left: 15,
+                right: 15,
+                // this will prevent the soft keyboard from covering the text fields
+                bottom: MediaQuery
+                    .of(context)
+                    .viewInsets
+                    .bottom + 120,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextField(
+                    controller: _titleController,
+                    decoration: const InputDecoration(hintText: 'Title'),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  // TextField(
+                  //   controller: _descriptionController,
+                  //   decoration: const InputDecoration(hintText: 'Description'),
+                  // ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      // Save new journal
+                      if (id == null) {
+                        await _addItem();
+                      }
+
+                      if (id != null) {
+                        await _updateItem(id);
+                      }
+
+                      // Clear the text fields
+                      _titleController.text = '';
+
+                      // Close the bottom sheet
+                      Navigator.of(context).pop();
+                      Navigator.pushNamed(context, 'inventory_data');
+                    },
+                    child: Text(id == null ? 'Створити' : 'Оновити'),
+                  )
+                ],
+              ),
+            ));
+  }
+
+// Insert a new journal to the database
+  Future<void> _addItem() async {
+    await SQLHelper.createItemInventory(
+        _titleController.text);
+    _refreshJournals();
+  }
+
+  // Update an existing journal
+  Future<void> _updateItem(int id) async {
+    await SQLHelper.updateItemInventory(
+        id, _titleController.text);
+    _refreshJournals();
+  }
+
+  // Delete an item
+  void _deleteItem(int id) async {
+    await SQLHelper.deleteItemInventory(id);
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('Successfully deleted a journal!'),
+    ));
+    _refreshJournals();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
+      child: Scaffold(
         appBar: AppBar(
-          title: const Text('Документи інвентаризації'),
-        ),
-        body:
-        ListView(
-          children: [
+          title: const Text('Інвентаризації')),
+          body: _isLoading
+              ? const Center(
+            child: CircularProgressIndicator(),
+          )
+              : ListView.builder(
+              itemCount: _journals.length,
+              itemBuilder: (context, index) => Card(
+                margin: const EdgeInsets.only(left: 15, right: 15, bottom: 5),
+                child: ListTile(
+                  title: Text(_journals[index] ['title']),
+                  // subtitle: Text(_journals[index]['description']),
+                  trailing: SizedBox(
+                    width: 100,
+                    child:
+                    Row(
+                      children: [
+                        IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: () => _showForm(_journals[index]['id'])),
 
-                    ],
+                        IconButton(
+                          icon: const Icon(Icons.delete),
+                          onPressed: () => _deleteItem(_journals[index]['id']),
+                        ),
+                      ],
+
+                    )
+                  ),
+                  onTap:() => Navigator.pushNamed(context, 'inventory_data'),
+                )
+              )
+          ),
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () => _showForm(null),
         ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                try{
-                FirebaseFirestore.instance.collection('listInventories').add({'name': 'doc Inv', 'id': 1});}
-                on Exception catch (_) {print('AAAAAAAAAAAAAAAAAAAAAAAAA');
-                throw Exception("Error on server");
-                }
-              },
-              // label: Text('Hi'),
-              child: const Icon(Icons.add)
-    )
-    )
-    );
+        ),
+      );
   }
 }
+

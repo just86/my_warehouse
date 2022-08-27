@@ -5,15 +5,22 @@ import 'package:my_warehouse/widgets/drawer.dart';
 import 'package:my_warehouse/screens/settings_screen.dart';
 import 'package:my_warehouse/screens/catalogs/warehouses/list_of_warehouses.dart';
 import 'package:my_warehouse/screens/documents/inventory/inventory_screen.dart';
+import 'package:my_warehouse/screens/documents/inventory/inventory_data.dart';
 
 
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       //home: Screen0(),
+        title: 'My warehouse',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.cyan,
+        ),
         initialRoute: '/',
         routes: {
           '/': (context) => const Screen0(),
@@ -22,6 +29,7 @@ class MainScreen extends StatelessWidget {
           'list_of_warehouses': (context) => const ListOfWarehouses(),
           'list_of_inventories': (context) => const ListofInventories(),
           'list_of_clients': (context) => const ListOfClients(),
+          'inventory_data' : (context) => const InventoryData(),
 
         });
   }
