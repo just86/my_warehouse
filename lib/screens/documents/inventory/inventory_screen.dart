@@ -24,7 +24,7 @@ class _ListofInventoriesState extends State<ListofInventories> {
   @override
   void initState() {
     super.initState();
-    _refreshJournals(); // Loading the diary when the app starts
+    _refreshJournals(); // Loading when the app starts
   }
 
   final TextEditingController _titleController = TextEditingController();

@@ -52,7 +52,7 @@ class SQLHelper {
 
   // Delete
   static Future<void> deleteItemInventory(int id) async {
-    final db = await SQLHelper.db();
+    final db = await SQLHelper.dbInventory();
     try {
       await db.delete("inventory", where: "id = ?", whereArgs: [id]);
     } catch (err) {
@@ -62,7 +62,7 @@ class SQLHelper {
 
   // Read all items (journals)
   static Future<List<Map<String, dynamic>>> getItemsInventory() async {
-    final db = await SQLHelper.db();
+    final db = await SQLHelper.dbInventory();
     return db.query('inventory', orderBy: "id");
   }
 
