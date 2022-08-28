@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_warehouse/widgets/db/sql_helper.dart';
 
-
 class ListofInventories extends StatefulWidget {
   const ListofInventories({Key? key}) : super(key: key);
 
@@ -29,6 +28,7 @@ class _ListofInventoriesState extends State<ListofInventories> {
   }
 
   final TextEditingController _titleController = TextEditingController();
+
   // final TextEditingController _descriptionController = TextEditingController();
 
   // This function will be triggered when the floating button is pressed
@@ -38,7 +38,7 @@ class _ListofInventoriesState extends State<ListofInventories> {
       // id == null -> create new item
       // id != null -> update an existing item
       final existingJournal =
-      _journals.firstWhere((element) => element['id'] == id);
+          _journals.firstWhere((element) => element['id'] == id);
       _titleController.text = existingJournal['title'];
       // _descriptionController.text = existingJournal['description'];
     }
@@ -47,17 +47,13 @@ class _ListofInventoriesState extends State<ListofInventories> {
         context: context,
         elevation: 5,
         isScrollControlled: true,
-        builder: (_) =>
-            Container(
+        builder: (_) => Container(
               padding: EdgeInsets.only(
                 top: 15,
                 left: 15,
                 right: 15,
                 // this will prevent the soft keyboard from covering the text fields
-                bottom: MediaQuery
-                    .of(context)
-                    .viewInsets
-                    .bottom + 120,
+                bottom: MediaQuery.of(context).viewInsets.bottom + 120,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -104,15 +100,13 @@ class _ListofInventoriesState extends State<ListofInventories> {
 
 // Insert a new journal to the database
   Future<void> _addItem() async {
-    await SQLHelper.createItemInventory(
-        _titleController.text);
+    await SQLHelper.createItemInventory(_titleController.text);
     _refreshJournals();
   }
 
   // Update an existing journal
   Future<void> _updateItem(int id) async {
-    await SQLHelper.updateItemInventory(
-        id, _titleController.text);
+    await SQLHelper.updateItemInventory(id, _titleController.text);
     _refreshJournals();
   }
 
@@ -129,46 +123,42 @@ class _ListofInventoriesState extends State<ListofInventories> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Інвентаризації')),
-          body: _isLoading
-              ? const Center(
-            child: CircularProgressIndicator(),
-          )
-              : ListView.builder(
-              itemCount: _journals.length,
-              itemBuilder: (context, index) => Card(
-                margin: const EdgeInsets.only(left: 15, right: 15, bottom: 5),
-                child: ListTile(
-                  title: Text(_journals[index] ['title']),
-                  // subtitle: Text(_journals[index]['description']),
-                  trailing: SizedBox(
-                    width: 100,
-                    child:
-                    Row(
-                      children: [
-                        IconButton(
-                            icon: const Icon(Icons.edit),
-                            onPressed: () => _showForm(_journals[index]['id'])),
-
-                        IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () => _deleteItem(_journals[index]['id']),
-                        ),
-                      ],
-
-                    )
-                  ),
-                  onTap:() => Navigator.pushNamed(context, 'inventory_data'),
-                )
+        appBar: AppBar(title: const Text('Інвентаризації')),
+        body: _isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
               )
-          ),
+            : ListView.builder(
+                itemCount: _journals.length,
+                itemBuilder: (context, index) => Card(
+                    margin:
+                        const EdgeInsets.only(left: 15, right: 15, bottom: 5),
+                    child: ListTile(
+                      title: Text(_journals[index]['title']),
+                      // subtitle: Text(_journals[index]['description']),
+                      trailing: SizedBox(
+                          width: 100,
+                          child: Row(
+                            children: [
+                              IconButton(
+                                  icon: const Icon(Icons.edit),
+                                  onPressed: () =>
+                                      _showForm(_journals[index]['id'])),
+                              IconButton(
+                                icon: const Icon(Icons.delete),
+                                onPressed: () =>
+                                    _deleteItem(_journals[index]['id']),
+                              ),
+                            ],
+                          )),
+                      onTap: () =>
+                          Navigator.pushNamed(context, 'inventory_data'),
+                    ))),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () => _showForm(null),
         ),
-        ),
-      );
+      ),
+    );
   }
 }
-
